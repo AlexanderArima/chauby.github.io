@@ -18,7 +18,7 @@ keywords: github，博客搭建，github.io
 
 ### 1. 语法简介
 
-待完成
+可参考我的另一篇文章[Markdown的基本语法](https://chauby.github.io/2019/12/13/markdown-basic-skills/)
 
 ### 2. Markdown编辑器typora
 
@@ -42,29 +42,29 @@ git clone
 
 ### 3. 基于ruby的本地编写和调试博客内容
 
-[ruby的下载地址](https://rubyinstaller.org/downloads/)
+[Ruby的下载地址](https://rubyinstaller.org/downloads/)
 
-ruby的安装路径最好不要包含空格（没有完整去验证过，但是我第一次的安装路径包含了空格，后面安装其他东西的时候老是不成功。重新选择了不包含空格的安装路径来安装了ruby后，安装后续的其他问题一路顺利。）
+Ruby下载完成以后直接双击安装，除了安装路径，其他一路默认选项就行。安装路径最好不要包含空格（没有完整去验证过，但是我第一次的安装路径包含了空格，后面安装其他东西的时候老是不成功。重新选择了不包含空格的安装路径来安装了ruby后，安装后续的其他问题一路顺利。）
 
-ruby安装完成以后会弹出一个窗口让你选择3个选项之一来安装，一般直接选3就是，安装过程需要一定的时间。如果这部分没有安装成功，可以使用如下的命令重新安装，这个命令直接在windows的cmd中执行即可，后面的其他安装命令也是一样的。安装成功以后直接回车即可。
+Ruby安装完成以后会弹出一个窗口让你选择3个选项之一来安装，一般直接选3就是，安装过程需要一定的时间。如果这部分没有安装成功，可以使用如下的命令重新安装，这个命令直接在windows的cmd中执行即可，后面的其他安装命令也是一样的。安装成功以后直接回车即可。
 
 ```shell
 ridk install
 ```
 
 
-待完成
+上述安装完成以后，需要执行以下命令安装bundle:
 ```shell
 gem install bundle
 ```
-待完成
 
-```
+然后是安装jekyll，由于github pages是基于jekyll，所以我们本地安装jekyll以后进行本地的网页调试，最后呈现的结果与在线的是一样的，调试完成了在推送到github仓库部署就行。
+```shell
 gem install jekyll
 ```
 
 最后需要安装github-pages，这部分会持续安装很多东西，所以耗时比较长，耐心等待即可。
-```
+```shell
 gem install github-pages
 ```
 
@@ -73,32 +73,47 @@ gem install github-pages
     <br>
 </center>
 
-至此，所有的安装工作已完成，你会看到如下界面：
+至此，所有的安装工作已完成,此时cd到对应博客的目录，运行以下命令：
 
-
-
-此时cd到对应的目录，运行如下命令：
-
-```
-bundle exec jekyll server --watch
+```shell
+bundle exec jekyll serve -P 5555 --watch
 ```
 
-正常情况下你能看到类似下图的启动界面了，此时在浏览器的地址栏输出 `localhost:4000`就能看到你的博客了。如果不行，请参考后文的常见问题和解决办法。
+`--watch`表示这个本地网页是实时刷新的，当你更改网页的内容时它能实时的变化，而不用不断重启和加载网页。`-P 5555`参数是指定端口号为`5555`，Jekyll默认的端口号是4000，会与福昕阅读器的端口号冲突（如果你的电脑安装了福昕阅读器），所以还是指定端口号最佳。正常情况下你能看到类似下图的启动界面了，此时在浏览器的地址栏输出 `localhost:5555`就能看到你的博客了。如果不行，请参考后文的[常见问题和解决办法](#常见问题)。
 
+![Successful](/images/posts/blog/jekyll-serve-successfully.png)
 
 
 ## 三. 常见问题
 
-### 1. 无法正常安装github-pages...
+### 1. 提示 Could not find gem 'tzinfo-data'
 
-待完成
+![Error 1](/images/posts/blog/jekyll-err1.png)
 
-### 2. 无法启动jekyll server
+则打开终端切换到`user.github.io/`路径下，然后运行以下命令：
 
-待完成
+```shell
+bundle install
+```
+
+然后等待安装tzinfo、tzinfo-data、wdm等，需要等待一段时间。
+
+### 2. 提示 Error: Permission denied -bind(2) for 127.0.0.1:4000
+
+![Error 2](/images/posts/blog/jekyll-err2.png)
+
+出现这个问题是提示端口号被占用，因为Jekyll默认的端口号是4000，可能与其他软件冲突（例如福昕阅读器）。所以最好的办法是运行jekyll的启动命令时指定端口号，例如：
+
+```shell
+bundle exec jekyll serve -P 5555 --watch
+```
+
+
+
+
 
 
 
 ## 四. 参考
 
-1. 非常感谢xxx，本博客的搭建过程使用了xxx的主题
+1. 本博客的搭建过程使用了Zhuang Ma的博客主题[码志](https://mazhuang.org)，此处致谢。
