@@ -69,7 +69,7 @@ permalink: /cv/
 
 ## Contact information
 - Github: [Chauby](https://chauby.github.com)
-- Gieee: [Chauby](https://gitee.com/chauby/)
+- Gitee: [Chauby](https://gitee.com/chauby/)
 - Email: chaubyZou@163.com
 - [Google Research](https://scholar.google.com.hk/citations?hl=zh-CN&user=etqLTR8AAAAJ)
 - [Research Gate](https://www.researchgate.net/)
